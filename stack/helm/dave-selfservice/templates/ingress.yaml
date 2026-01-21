@@ -40,7 +40,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: admin-portal
+                name: selfservice
                 port:
                   number: {{ $svcPort }}
           {{- end }}
