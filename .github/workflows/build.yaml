@@ -1,6 +1,7 @@
 name: compliance check and build test
 
-on: [push]
+on: 
+  workflow_dispatch:
 
 jobs:
   compliance:
