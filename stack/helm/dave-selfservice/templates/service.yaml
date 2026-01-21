@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: admin-portal
+  name: selfservice
   labels:
     {{- include "daveSelfService.labels" . | nindent 4 }}
 spec:
