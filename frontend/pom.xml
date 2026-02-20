@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.muenchen.dave</groupId>
         <artifactId>dave-selfservice-portal</artifactId>
-        <version>3.0.1-SNAPSHOT</version>        
+        <version>5.0.0</version>        
     </parent>
 
     <groupId>de.muenchen.dave.frontend</groupId>
