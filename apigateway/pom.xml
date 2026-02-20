@@ -2,9 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>de.muenchen.dave</groupId>
+        <artifactId>dave-selfservice-portal</artifactId>
+        <version>3.0.1-SNAPSHOT</version>        
+    </parent>
+
     <groupId>de.muenchen.dave.apigateway</groupId>
     <artifactId>dave-selfserviceportal-apigateway</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>dave_selfserviceportal_apigateway</name>
 
@@ -145,14 +150,6 @@
             <version>${logstash.encoder.version}</version>
         </dependency>
 
-        <!-- Frontend Lib -->
-        <dependency>
-            <groupId>de.muenchen.dave.frontend</groupId>
-            <version>3.0.1-SNAPSHOT</version>
-            <artifactId>dave-selfserviceportal-frontend</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
     </dependencies>
 
 
@@ -161,8 +158,19 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <exclude>static/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>static/**</include>
+                </includes>
             </resource>
         </resources>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -246,10 +254,28 @@
                 </executions>
             </plugin>
 
-            <!-- Generate Helm Chart -->
+            
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
+                    <!-- Copy frontend dist to static folder in Spring Boot app -->
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/src/main/resources/static</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/../frontend/dist</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <!-- Generate Helm Chart -->
                     <execution>
                         <id>resources-helm-deployment</id>
                         <phase>validate</phase>

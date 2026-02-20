@@ -9,6 +9,40 @@ spring:
   session:
     timeout: 36000  # in seconds; Goal: same lifetime as SSO Session (e.g. 10 hours)
 
+  cloud:
+    gateway:
+      actuator:
+        verbose:
+          enabled: false
+      globalcors:
+        corsConfigurations:
+          # The cors configuration to allow frontend developers cross origin request via this api gateway
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:8086"
+              - "http://127.0.0.1:8086"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+      routes:
+        - id: backend
+          uri: http://localhost:8080/
+          predicates:
+            - Path=/api/dave-backend-service/**
+          filters:
+            - name: Retry
+              args:
+                retries: 2
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
+            - RewritePath=/api/dave-backend-service/(?<urlsegments>.*), /$\{urlsegments}
+            - RemoveResponseHeader=WWW-Authenticate
+
 server:
   port: 8084
   error:
