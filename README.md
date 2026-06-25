@@ -1,41 +1,37 @@
 # DAVe Selfservice-Portal
+Urban mobility planning depends on reliable traffic data and intuitive analysis tools. DAVe (Database and Evaluation of Traffic Counts / Datenbank und Auswertung für Verkehrszählungen) is an open-source platform to manage, evaluate, and visualize traffic data. 
+The software enables municipalities, transport planners, and mobility departments to analyze traffic flows, monitor long-term developments, and support data-driven infrastructure planning.
+
+DAVe was started and opensourced by the Mobility Department of the City of Munich. This is Starwit's distribution, which is focused on easy operations.
+
+Self-Service Portal offers functions to require counting jobs from service providers.
 
 ## About the project
-Dieses Repository ist eine der 5 Komponenten der Anwendung "DAVe" (Datenbank und Auswertung für Verkehrszählungen).
+This repository is one of the 5 components of the 'DAVe' application Not all five components necessarily have to be used at the same time. Following table shows DAVe's main components.
 
-Bitte beachten Sie, dass diese Komponente nicht ohne das [dave-backend](https://github.com/it-at-m/dave-backend) betrieben werden kann!
+| Component        | Repository / URI                                           | Description                  |
+| -----------------| -----------------------------------------------------------| -----------------------------|
+| DAVe Backend     | https://github.com/starwit/dave-backend                    | Data Storage & Business Logic|
+| DAVe Frontend    | https://github.com/starwit/dave-frontend                   | Analytics Frontend           |
+| DAVe Admin Portal | https://github.com/starwit/dave-admin-portal              | Administration Frontend      |
+| DAVe Self Service Portal | https://github.com/starwit/dave-selfservice-portal | Self-Service for data upload |
+| DAVe Adapter     | https://github.com/starwit/dave-adapter                    | Connect to data platform & sensors|
 
-Um einen genaueren Überblick über die verschiedenen Komponenten der Anwendung und deren Zusammenhänge zu bekommen, bitte die Dokumentation des [dave-backend](https://github.com/it-at-m/dave-backend) zu Hilfe nehmen.
+The self-service portal serves as communication between the LHM and the counting service provider. Via this portal, the service provider has the ability to retrieve their counting assignments online and assign (upload) count data to these assignments. This data can then be reviewed by the LHM via the Admin Portal and released for further use. It is currently the only way to enter new count data into the system using the web interface.
 
-Das Selfservice-Portal dient zur Kommunikation zwischen LHM und Zähldienstleister. Über das Portal hat der Dienstleister die Möglichkeit, seine Zählungsaufträge online aufzurufen und diesen Aufträgen Zähldaten zuzuordnen (hochzuladen). Diese Daten können dann über das [Adminportal](https://github.com/it-at-m/dave-admin-portal) von der LHM überprüft und für den weiteren Gebrauch feigegeben werden. Es ist momentan die einzige Möglichkeit neue Zähldaten über die Weboberfläche in das System einzupflegen. 
+## Developer Info
 
-## Built with
-* Java
-* Vue.js
+See [dev doc](/docs/Readme.md) for instruction for developers.
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please open an issue with the tag "enhancement", fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Open an issue with the tag "enhancement"
-2. Fork the Project
-3. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-4. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-5. Push to the Branch (`git push origin feature/AmazingFeature`)
-6. Open a Pull Request
-
-### Coding Conventions
-
-We use the [itm-java-codeformat](https://github.com/it-at-m/itm-java-codeformat) project to apply code formatting conventions.
-To add those conventions to your favorite IDE, please have a look at the [README of itm-java-codeformat](https://github.com/it-at-m/itm-java-codeformat#verwendung).
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated! This edition of DAVe is published under the AGPLv3 license. See section [license](#license) for more details. All contributions will also be published under this license.
 
 ## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+Everything in this repo is licensed under AGPL 3 and the license can be found [here](LICENSE).
 
 ## Contact
+For Munich's edition it@m - opensource@muenchen.de
 
-it@m - opensource@muenchen.de
+For Starwit's edition contact info@starwit.de
+
